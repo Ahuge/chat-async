@@ -41,7 +41,7 @@ class WebsocketDriver(Driver):
 
     @asyncio.coroutine
     def __create_protocol(self, handler, reader, writer):
-        protocol = server.WebSocketServerProtocol(handler)
+        protocol = server.WebSocketServerProtocol(handler, asyncio.get_event_loop())
         protocol.client_connected(reader, writer)
         yield from protocol.handler()
 
